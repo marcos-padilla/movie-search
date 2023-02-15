@@ -1,13 +1,12 @@
-import results from '../mock/results.json'
 import Movie from './Movie'
 
-export default function MovieList() {
+export default function MovieList({ movies }) {
 	return (
 		<div>
-			{results.Response ? (
+			{movies.Response ? (
 				<div>
 					<ul>
-						{results.Search.map((movie) => {
+						{movies.Search.map((movie) => {
 							return (
 								<Movie
 									key={movie.imdbID}
