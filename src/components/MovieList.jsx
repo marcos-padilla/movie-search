@@ -1,4 +1,5 @@
 import results from '../mock/results.json'
+import Movie from './Movie'
 
 export default function MovieList() {
 	return (
@@ -8,11 +9,14 @@ export default function MovieList() {
 					<ul>
 						{results.Search.map((movie) => {
 							return (
-								<li key={movie.imdbID}>
-									<h1>{movie.Title}</h1>
-									<p>{movie.Year}</p>
-									<img src={movie.Poster} alt={movie.Title} />
-								</li>
+								<Movie
+									key={movie.imdbID}
+									movie={{
+										title: movie.title,
+										year: movie.Year,
+										poster: movie.Poster,
+									}}
+								/>
 							)
 						})}
 					</ul>
