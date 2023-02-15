@@ -7,7 +7,7 @@ export default function Movie({ movie }) {
 				<h2>{movie.title}</h2>
 				<span>{movie.year}</span>
 			</div>
-			<img src={movie.poster} alt={movie.title} />
+			<img src={movie.image} alt={movie.title} />
 		</li>
 	)
 }

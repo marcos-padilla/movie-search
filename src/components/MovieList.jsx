@@ -1,27 +1,24 @@
 import Movie from './Movie'
 import './styles/movie-list.scss'
+
 export default function MovieList({ movies }) {
 	return (
 		<div>
-			{movies.Response ? (
-				<div>
-					<ul className='movie-list'>
-						{movies.Search.map((movie) => {
-							return (
-								<Movie
-									key={movie.imdbID}
-									movie={{
-										title: movie.Title,
-										year: movie.Year,
-										poster: movie.Poster,
-									}}
-								/>
-							)
-						})}
-					</ul>
-				</div>
+			{movies?.length > 0 ? (
+				<ul className='movie-list'>
+					{movies.map((movie) => {
+						return <Movie key={movie.imdbID} movie={movie} />
+					})}
+				</ul>
 			) : (
-				<h1>No hay peliculas que mostrar</h1>
+				<p
+					style={{
+						textAlign: 'center',
+						fontSize: '2rem',
+					}}
+				>
+					No se encontraron películas para esta búsqueda
+				</p>
 			)}
 		</div>
 	)

@@ -2,21 +2,15 @@ import './styles/form.scss'
 import { useState } from 'react'
 import { API_URL } from '../constants'
 
-export default function Form({ setMovies }) {
-	const [search, setSearch] = useState('')
-	const [error, setError] = useState(false)
-
-	const handleSubmit = async (e) => {
+export default function Form({ getMovies, search, error, updateSearch }) {
+	const handleSubmit = (e) => {
 		e.preventDefault()
-		setError(false)
-		fetch(`${API_URL}&s=${search}`)
-			.then((resp) => resp.json())
-			.then((resp) => {
-				setMovies(resp)
-			})
-			.catch((err) => {
-				setError('Se produjo un error en la busqueda')
-			})
+		getMovies({ search })
+	}
+
+	const handleChange = (e) => {
+		const newSearch = e.target.value
+		updateSearch(newSearch)
 	}
 
 	return (
@@ -24,9 +18,13 @@ export default function Form({ setMovies }) {
 			<form onSubmit={handleSubmit}>
 				<input
 					value={search}
-					onChange={(e) => setSearch(e.target.value)}
+					onChange={handleChange}
 					placeholder='Search movies'
 					className='search-input'
+					style={{
+						border: '1px solid transparent',
+						borderColor: error ? 'red' : 'transparent',
+					}}
 				/>
 				<button className='button-submit'>Search</button>
 			</form>
