@@ -1,8 +1,12 @@
+import './styles/movie.scss'
+
 export default function Movie({ movie }) {
 	return (
-		<li>
-			<h1>{movie.title}</h1>
-			<p>{movie.year}</p>
+		<li className='movie-card'>
+			<div>
+				<h2>{movie.title}</h2>
+				<span>{movie.year}</span>
+			</div>
 			<img src={movie.poster} alt={movie.title} />
 		</li>
 	)
